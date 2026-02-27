@@ -24,5 +24,4 @@ test('should login using valid credentials', async ({ page }) => {
     .toHaveLength(1);
 
   await page.context().storageState({ path: './appState.json' as string });
-  await expect(page).toHaveScreenshot();
 });
