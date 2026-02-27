@@ -31,4 +31,6 @@ Some tests use Playwright's `toHaveScreenshot()` for visual regression. Baseline
 npx playwright test --update-snapshots
 ```
 
+[update-snapshots.yml](https://github.com/vyakaa/playwright-automation-framework/blob/main/.github/workflows/update-snapshots.yml) workflow uses the command below to generate the new snapshots and then commits them to the branch via `stefanzweifel/git-auto-commit-action`.
+
 Copyright (c) 2026 Viktoriia Chykrii.
