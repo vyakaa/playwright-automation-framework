@@ -1,5 +1,7 @@
 # Playwright Boilerplate - saucedemo
 
+[![Playwright Tests](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml)
+
 This repository contains a Playwright Test boilerplate showcasing best practices: Page Object Model, environment variables usage, TypeScript, linting, formatting, and CI with GitHub Actions.
 
 Quick start:
