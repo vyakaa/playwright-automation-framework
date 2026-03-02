@@ -9,24 +9,19 @@ export class ItemComponent {
     this.cartItems = this.page.getByTestId('inventory-item');
   }
 
-  async itemCount() {
+  async itemCount(): Promise<number> {
     return await this.cartItems.count();
   }
 
-  async getItems() {
-    const items: Array<{
-      quantity: Promise<string | null>;
-      price: Promise<string | null>;
-      name: Promise<string | null>;
-      description: Promise<string | null>;
-    }> = [];
+  async getItems(): Promise<InventoryItem[]> {
+    const items: InventoryItem[] = [];
 
-    (await this.cartItems.all()).forEach((cartItem) => {
+    (await this.cartItems.all()).forEach(async (cartItem) => {
       const item = {
-        quantity: cartItem.getByTestId('item-quantity').innerText(),
-        price: cartItem.getByTestId('inventory-item-price').innerText(),
-        name: cartItem.getByTestId('inventory-item-name').innerText(),
-        description: cartItem.getByTestId('inventory-item-desc').innerText(),
+        quantity: await cartItem.getByTestId('item-quantity').innerText(),
+        price: await cartItem.getByTestId('inventory-item-price').innerText(),
+        name: await cartItem.getByTestId('inventory-item-name').innerText(),
+        description: await cartItem.getByTestId('inventory-item-desc').innerText(),
       };
 
       items.push(item);
@@ -35,3 +30,10 @@ export class ItemComponent {
     return items;
   }
 }
+
+type InventoryItem = {
+  quantity: string | null;
+  price: string | null;
+  name: string | null;
+  description: string | null;
+};
