@@ -35,8 +35,8 @@ test('should complete checkout step two', async ({ page }) => {
   expect(await itemComponent.itemCount()).toBe(1);
 
   const firstItem = (await itemComponent.getItems()).at(0);
-  expect(await firstItem?.name).toBe('Sauce Labs Backpack');
-  expect(await firstItem?.price).toBe('$29.99');
+  expect(firstItem?.name).toBe('Sauce Labs Backpack');
+  expect(firstItem?.price).toBe('$29.99');
 
   await expect(page).toHaveScreenshot();
 });

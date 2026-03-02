@@ -21,8 +21,8 @@ test('should display added item in cart', async ({ page }) => {
 
   const firstItem = (await itemComponent.getItems()).at(0);
 
-  expect(await firstItem?.name).toBe('Sauce Labs Backpack');
-  expect(await firstItem?.price).toBe('$29.99');
+  expect(firstItem?.name).toBe('Sauce Labs Backpack');
+  expect(firstItem?.price).toBe('$29.99');
   await expect(page).toHaveScreenshot();
 });
 

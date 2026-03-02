@@ -14,18 +14,20 @@ export class ItemComponent {
   }
 
   async getItems(): Promise<InventoryItem[]> {
-    const items: InventoryItem[] = [];
+    const cartItems = await this.cartItems.all();
 
-    (await this.cartItems.all()).forEach(async (cartItem) => {
-      const item = {
-        quantity: await cartItem.getByTestId('item-quantity').innerText(),
-        price: await cartItem.getByTestId('inventory-item-price').innerText(),
-        name: await cartItem.getByTestId('inventory-item-name').innerText(),
-        description: await cartItem.getByTestId('inventory-item-desc').innerText(),
-      };
+    const items = await Promise.all(
+      cartItems.map(async (cartItem) => {
+        const item = {
+          quantity: await cartItem.getByTestId('item-quantity').innerText(),
+          price: await cartItem.getByTestId('inventory-item-price').innerText(),
+          name: await cartItem.getByTestId('inventory-item-name').innerText(),
+          description: await cartItem.getByTestId('inventory-item-desc').innerText(),
+        };
 
-      items.push(item);
-    });
+        return item;
+      }),
+    );
 
     return items;
   }
