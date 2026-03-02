@@ -11,16 +11,16 @@ export abstract class BasePage {
     this.menuButton = this.page.locator('#react-burger-menu-btn');
   }
 
-  async clickLogout() {
+  async clickLogout(): Promise<void> {
     await this.menuButton.click();
     await this.page.getByTestId('logout-sidebar-link').click();
   }
 
-  async isErrorAlertDisplayed() {
+  async isErrorAlertDisplayed(): Promise<boolean> {
     return await this.alertError.isVisible();
   }
 
-  async getAlertText() {
+  async getAlertText(): Promise<string> {
     return await this.alertError.innerText();
   }
 }

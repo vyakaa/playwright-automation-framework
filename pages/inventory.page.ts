@@ -6,20 +6,20 @@ export class InventoryPage extends BasePage {
   readonly cartLink: Locator = this.page.getByTestId('shopping-cart-link');
   readonly cartBadge: Locator = this.page.getByTestId('shopping-cart-badge');
 
-  async open() {
+  async open(): Promise<void> {
     await this.page.goto('/inventory.html');
   }
 
-  async addFirstItemToCart() {
+  async addFirstItemToCart(): Promise<void> {
     const buttons = this.addToCartButtons;
     await buttons.first().click();
   }
 
-  getCartBadge() {
+  async getCartBadge(): Promise<number> {
     return this.cartBadge.count();
   }
 
-  async gotoCart() {
+  async gotoCart(): Promise<void> {
     await this.cartLink.click();
     await this.page.waitForLoadState();
   }
