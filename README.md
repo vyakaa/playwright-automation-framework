@@ -2,7 +2,14 @@
 
 [![Playwright Tests](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml)
 
-This repository contains a Playwright Test boilerplate showcasing best practices: Page Object Model, environment variables usage, TypeScript, linting, formatting, and CI with GitHub Actions.
+This repository contains a Playwright boilerplate showcasing best practices: 
+- Page Object Model,
+- environment variables usage,
+- TypeScript,
+- linting,
+- formatting,
+- storageState usage
+- and CI with GitHub Actions which includes steps for caching npm, Playwright browsers and binaries.
 
 Quick start:
 
@@ -32,5 +39,3 @@ npx playwright test --update-snapshots
 ```
 
 [update-snapshots.yml](https://github.com/vyakaa/playwright-automation-framework/blob/main/.github/workflows/update-snapshots.yml) workflow uses the command below to generate the new snapshots and then commits them to the branch via `stefanzweifel/git-auto-commit-action`.
-
-Copyright (c) 2026 Viktoriia Chykrii.
