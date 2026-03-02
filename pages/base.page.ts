@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
-export class BasePage {
+export abstract class BasePage {
   readonly page: Page;
   readonly alertError: Locator;
   readonly menuButton: Locator;
