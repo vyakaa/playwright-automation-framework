@@ -2,7 +2,14 @@
 
 [![Playwright Tests](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml)
 
-This repository contains a Playwright Test boilerplate showcasing best practices: Page Object Model, environment variables usage, TypeScript, linting, formatting, storageState usage and CI with GitHub Actions which includes steps for caching npm, Playwright browsers and binaries.
+This repository contains a Playwright boilerplate showcasing best practices: 
+- Page Object Model,
+- environment variables usage,
+- TypeScript,
+- linting,
+- formatting,
+- storageState usage
+- and CI with GitHub Actions which includes steps for caching npm, Playwright browsers and binaries.
 
 Quick start:
 
