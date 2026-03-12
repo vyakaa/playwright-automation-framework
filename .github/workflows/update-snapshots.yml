@@ -10,7 +10,12 @@ jobs:
   update-snapshots:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "${{secrets.TEST_SECRETS}}" >> .env
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -24,25 +29,24 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-      - name: Cache playwright binaries
+      - name: Restore Playwright binaries cache
         uses: actions/cache@v4
         id: playwright-cache
         with:
-          path: |
-            ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
-      - name: Install Playwright browsers
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/playwright.config.ts') }}
+          path: ~/.cache/ms-playwright
+          restore-keys: |
+            ${{ runner.os }}-playwright-${{ hashFiles('**/playwright.config.ts') }}
+            ${{ runner.os }}-playwright-
+      - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-
       - name: Update Playwright snapshots
         run: npx playwright test --update-snapshots
-
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Commit and push updated snapshots
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

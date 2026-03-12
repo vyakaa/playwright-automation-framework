@@ -30,14 +30,16 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-      - name: Cache playwright binaries
+      - name: Restore Playwright binaries cache
         uses: actions/cache@v4
         id: playwright-cache
         with:
-          path: |
-            ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
-      - name: Install Playwright browsers
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/playwright.config.ts') }}
+          path: ~/.cache/ms-playwright
+          restore-keys: |
+            ${{ runner.os }}-playwright-${{ hashFiles('**/playwright.config.ts') }}
+            ${{ runner.os }}-playwright-
+      - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run tests
