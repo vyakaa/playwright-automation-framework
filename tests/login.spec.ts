@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 
 const userNames = [
-  { username: 'standard_user' },
-  { username: 'problem_user' },
-  { username: 'performance_glitch_user' },
+  { username: process.env.STANDARD_USER! },
+  { username: process.env.PROBLEM_USER! },
+  { username: process.env.PERFORMANCE_GLITCH_USER! },
 ];
 
 const loginTestCases = [
@@ -16,17 +16,17 @@ const loginTestCases = [
   {
     testCase: 'existing password for other email',
     username: 'random@example.com',
-    password: 'secret_sauce',
+    password: process.env.TEST_PASS!,
   },
   {
     testCase: 'incorrect password',
-    username: 'standard_user',
+    username: process.env.TEST_USER!,
     password: 'test',
   },
-  { testCase: 'short password', email: 'standard_user', password: 't' },
+  { testCase: 'short password', email: process.env.TEST_USER!, password: 't' },
   {
     testCase: 'long password',
-    username: 'standard_user',
+    username: process.env.TEST_USER!,
     password:
       '9OpkG2Rb3O5HKw1GBg4nE7ginzJMuyUXUxbeoKQTRYQpNsQBM9QsKyqvwlBrozBZzVtBNINwN9MI5nMutui3Zq7e3uD4dWEDfGzh',
   },
@@ -51,7 +51,7 @@ test('should not login with no credentials', async ({ page }) => {
 });
 
 test('should not login with no password', async ({ page }) => {
-  await loginPage.enterUsername('standard_user');
+  await loginPage.enterUsername(process.env.TEST_USER!);
   await loginPage.clickLoginButton();
 
   expect(await loginPage.getAlertText()).toEqual(expect.anything());
@@ -60,15 +60,15 @@ test('should not login with no password', async ({ page }) => {
 
 userNames.forEach(({ username }) => {
   test(`should login as ${username}`, async ({ page }) => {
-    await loginPage.loginWithCredentials(username, 'secret_sauce');
+    await loginPage.loginWithCredentials(username, process.env.TEST_PASS!);
 
     await expect(page).toHaveURL(/inventory.html/);
     await expect(page.locator('.inventory_list')).toBeVisible();
   });
 });
 
-test('should not login as locked_out_user', async ({ page }) => {
-  await loginPage.loginWithCredentials('locked_out_user', 'secret_sauce');
+test('should not login as locked user', async ({ page }) => {
+  await loginPage.loginWithCredentials(process.env.LOCKED_OUT_USER!, process.env.TEST_PASS!);
   await expect(page.locator('[data-test="error"]')).toBeVisible();
   await expect(page).toHaveScreenshot();
 });

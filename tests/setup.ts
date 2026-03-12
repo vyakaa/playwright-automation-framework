@@ -4,7 +4,7 @@ import { LoginPage } from '../pages/login.page.ts';
 test('should login using valid credentials', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.open();
-  await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
+  await loginPage.loginWithCredentials(process.env.TEST_USER!, process.env.TEST_PASS!);
   await page.waitForLoadState();
 
   await expect(page).toHaveURL(/inventory.html/);
