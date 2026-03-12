@@ -11,7 +11,12 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "${{secrets.TEST_SECRETS}}" >> .env
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
