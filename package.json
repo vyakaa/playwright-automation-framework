@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "tests": "npx playwright test",
+    "apiTests": "npx playwright test tests/api/*.spec.ts",
     "tests:check_for_flakiness": "npx playwright test tests/ --workers 4 --repeat-each=5 --project=chromium",
     "report": "npx playwright show-report",
     "lint": "eslint .",

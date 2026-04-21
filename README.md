@@ -2,7 +2,8 @@
 
 [![Playwright Tests](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/vyakaa/playwright-automation-framework/actions/workflows/playwright.yml)
 
-This repository contains a Playwright boilerplate showcasing best practices: 
+This repository contains a Playwright boilerplate showcasing best practices:
+
 - Page Object Model,
 - environment variables usage,
 - TypeScript,
@@ -11,18 +12,19 @@ This repository contains a Playwright boilerplate showcasing best practices:
 - storageState usage
 - and CI with GitHub Actions which includes steps for caching npm, Playwright browsers and binaries.
 
-Quick start:
+## Quick start:
 
 ```bash
 npm install
 npm run tests
 ```
 
-Scripts:
+## Scripts:
 
 - `npm run tests` — run tests headless
 - `npm run lint` — run ESLint
 - `npm run format` — format with Prettier
+- `npm run apiTests` - run JSONPlaceholder API tests
 
 Credentials are read from `.env` (see `TEST_USER` / `TEST_PASS`) and can be overridden by environment variables.
 
