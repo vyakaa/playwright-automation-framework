@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { InventoryPage } from '../pages/inventory.page';
-import { CartPage } from '../pages/cart.page';
-import { ItemComponent } from '../components/item.component.ts';
+import { InventoryPage } from '../../pages/inventory.page.ts';
+import { CartPage } from '../../pages/cart.page.ts';
+import { ItemComponent } from '../../components/item.component.ts';
 
 let inventoryPage: InventoryPage, cartPage: CartPage, itemComponent: ItemComponent;
 

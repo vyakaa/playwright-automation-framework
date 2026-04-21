@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { InventoryPage } from '../pages/inventory.page';
-import { CartPage } from '../pages/cart.page';
-import { CheckoutPage } from '../pages/checkout.page';
-import { ItemComponent } from '../components/item.component.ts';
+import { InventoryPage } from '../../pages/inventory.page.ts';
+import { CartPage } from '../../pages/cart.page.ts';
+import { CheckoutPage } from '../../pages/checkout.page.ts';
+import { ItemComponent } from '../../components/item.component.ts';
 
 let inventoryPage: InventoryPage,
   checkoutPage: CheckoutPage,

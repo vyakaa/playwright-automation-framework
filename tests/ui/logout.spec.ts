@@ -1,7 +1,7 @@
 import { expect, test, Page } from '@playwright/test';
-import { InventoryPage } from '../pages/inventory.page';
-import { CartPage } from '../pages/cart.page';
-import { CheckoutPage } from '../pages/checkout.page';
+import { InventoryPage } from '../../pages/inventory.page';
+import { CartPage } from '../../pages/cart.page';
+import { CheckoutPage } from '../../pages/checkout.page';
 
 [
   { pageName: 'inventory', newPageFunc: (page: Page) => new InventoryPage(page) },

@@ -5,6 +5,7 @@ import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 export default defineConfig({
+  testDir: 'tests/ui',
   fullyParallel: true,
   retries: 1,
   reporter: 'html',
@@ -22,6 +23,13 @@ export default defineConfig({
 
   projects: [
     {
+      name: 'api',
+      testDir: 'tests/api',
+      use: {
+        baseURL: 'https://jsonplaceholder.typicode.com',
+      },
+    },
+    {
       name: 'setup',
       testMatch: '**/setup.ts',
     },
@@ -33,33 +41,27 @@ export default defineConfig({
         storageState: './appState.json',
       },
     },
-
     // {
     //   name: 'firefox',
     //   dependencies: ['setup'],
-    //   use: { ...devices['Desktop Firefox'],
-    // storageState: './appState.json' },
+    //   use: { ...devices['Desktop Firefox'], storageState: './appState.json' },
     // },
-
     // {
     //   name: 'webkit',
     //   dependencies: ['setup'],
-    //   use: { ...devices['Desktop Safari'],
-    // storageState: './appState.json' },
+    //   use: { ...devices['Desktop Safari'], storageState: './appState.json' },
     // },
 
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
     //   dependencies: ['setup'],
-    //   use: { ...devices['Pixel 5'] ,
-    // storageState: './appState.json'},
+    //   use: { ...devices['Pixel 5'], storageState: './appState.json' },
     // },
     // {
     //   name: 'Mobile Safari',
     //   dependencies: ['setup'],
-    //   use: { ...devices['iPhone 12'] ,
-    // storageState: './appState.json'},
+    //   use: { ...devices['iPhone 12'], storageState: './appState.json' },
     // },
   ],
 });
